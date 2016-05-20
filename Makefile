@@ -43,7 +43,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(C_FILE:.c=.o))
 all : $(NAME)
 
 $(NAME) : $(LIB_A) $(OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $(LIB_A) $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIB_A)
 
 $(LIB_A): lib/.git
 	@echo 'build $(notdir $@)'

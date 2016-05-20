@@ -12,7 +12,14 @@
 
 char	*skip_line(char *str)
 {
-	while (**str != '\n')
-		(*str)++;
+	while (*str != '\n')
+		str++;
+	return (++str);
+}
+
+char	*end_line(char *str)
+{
+	while (*str != '\n')
+		str++;
 	return (str);
 }

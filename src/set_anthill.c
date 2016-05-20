@@ -30,6 +30,7 @@ void		set_anthill(char *str, t_anthill *anthill)
 {
 	anthill->nb_ant = get_nb_ant(str);
 	str = skip_line(str);
+	exit(EXIT_FAILURE);
 	set_graph_node(&str, anthill);
 	print_anthill(anthill);
 	ft_printf("%s", str);

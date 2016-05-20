@@ -17,6 +17,8 @@
 //# include "graph.h"
 
 # define BUF_LEN 512
+# define START 1
+# define END 2
 
 
 typedef struct	s_anthill
@@ -27,22 +29,28 @@ typedef struct	s_anthill
 //	t_graph			*graph;
 }				t_anthill;
 
+/*
+** this enum is used to parse stdin
+*/
+
 enum	e_line
 {
-	start,
-	end,
-	comment,
 	node,
-	edge
+	edge,
+	comment,
+	start_command,
+	end_command
 };
 
 void	set_anthill(char *str, t_anthill *anthill);
+void	set_graph_node(char **str, t_anthill *anthill);
 
 /*
 ** parse anthill
 */
 
-char	*skip_line(char **str);
+char	*skip_line(char *str);
+char	*end_line(char *str);
 
 /*
 ** debug func

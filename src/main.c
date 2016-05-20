@@ -32,6 +32,11 @@ char	*copy_stdin(void)
 		if (strvect_push_str(&vect, buf) == false)
 			exit(EXIT_FAILURE);
 	}
+	if (vect.str[vect.size -1] != '\n')
+	{
+		ft_printf("\'\\n\' please\n");
+		exit(EXIT_FAILURE);
+	}
 	return (vect.str);
 }
 
