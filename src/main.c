@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/20 18:51:48 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/20 21:21:25 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "strvect.h"
 
 #include <unistd.h>
+#include <stdlib.h>
 
 char	*copy_stdin(void)
 {
@@ -22,30 +23,27 @@ char	*copy_stdin(void)
 	char		buf[BUF_LEN + 1];
 	int			r;
 
-		ft_printf("a\n");
+	strvect_init(&vect);
 	while ((r = read(0, buf, BUF_LEN)) > 0)
 	{
-		ft_printf("b\n");
 		if (r == -1)
-			return NULL;
+			exit(EXIT_FAILURE);
 		buf[r] = '\0';
 		if (strvect_push_str(&vect, buf) == false)
-			return NULL;
-		ft_printf("c\n");
+			exit(EXIT_FAILURE);
 	}
 	return (vect.str);
 }
 
 int	main(void)
 {
-//	t_anthill	anthill;
+	t_anthill	anthill;
 	char		*str;
 
-	if ((str = copy_stdin()) == NULL)
-		return (EXIT_FAILURE);
-	ft_printf("%s", str);
-//	set_anthill(str, &anthill);
+	str = copy_stdin();
+	set_anthill(str, &anthill);
 //	compute_anthill(av[1]);
+	ft_printf("\n%s", str);
 	free(str);
 //	free_anthill(anthill);
 	return (EXIT_SUCCESS);

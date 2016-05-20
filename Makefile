@@ -12,10 +12,6 @@
 
 .PHONY : clean fclean re all
 
-C_DEFAULT =		\033[0m
-C_BLACK = 		\033[1;30m
-C_GREY =		\033[1;37m
-
 CC = gcc
 
 FLAGS = -Wall -Werror -Wextra
@@ -28,7 +24,11 @@ LIB_A = $(join $(LIB_DIR), $(addsuffix .a, $(LIB)))
 
 NAME = lem_in
 
-C_FILE = main.c
+C_FILE = main.c\
+		 set_anthill.c\
+		 set_graph_node.c\
+		 parse/skip_line.c\
+		 debug/print_anthill.c
 
 SRC_DIR = src
 
@@ -42,7 +42,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(C_FILE:.c=.o))
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) $(LIB_A)
+$(NAME) : $(LIB_A) $(OBJ)
 	$(CC) $(FLAGS) -o $(NAME) $(LIB_A) $(OBJ)
 
 $(LIB_A): lib/.git
@@ -51,14 +51,14 @@ $(LIB_A): lib/.git
 	@make clean -C $(dir $@)
 
 lib/.git:
-	git submdodule init
-	git submdodule update
+	git submodule init
+	git submodule update
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR):
-	@mkdir obj
+	@mkdir obj obj/parse obj/debug
 
 clean :
 	@rm -rf $(OBJ_DIR)
