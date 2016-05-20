@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
+/*   Updated: 2016/05/20 18:39:31 by ggilaber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LEM_IN_H
+# define LEM_IN_H
+
+# include "libft.h"
+//# include "graph.h"
+
+# define BUF_LEN 512
+
+/*
+**
+
+typedef struct s_anthill
+{
+	int				nb_ant;
+	t_graph_node	*start;
+	t_graph_node	*end;
+	t_graph			*graph;
+}
+*/
+
+#endif
