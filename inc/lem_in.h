@@ -42,6 +42,7 @@ enum	e_line
 	end_command
 };
 
+void	error(char *str);
 void	set_anthill(char *str, t_anthill *anthill);
 void	set_graph_node(char **str, t_anthill *anthill);
 

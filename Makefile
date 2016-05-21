@@ -25,6 +25,7 @@ LIB_A = $(join $(LIB_DIR), $(addsuffix .a, $(LIB)))
 NAME = lem_in
 
 C_FILE = main.c\
+		 error.c\
 		 set_anthill.c\
 		 set_graph_node.c\
 		 parse/skip_line.c\
