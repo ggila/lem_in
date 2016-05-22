@@ -17,6 +17,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+void	init_anthill(t_anthill *anthill, uint32_t size_ht)
+{
+	anthill->start = NULL;
+	anthill->end = NULL;
+	if (ht_init(&(anthill->graph.ht), size_ht, ft_strcmp, hash_djb2) == false)
+		exit(EXIT_FAILURE);
+	anthill->graph.nb_node = 0;
+}
+
 char	*copy_stdin(void)
 {
 	t_strvect	vect;
@@ -46,10 +55,11 @@ int	main(void)
 	char		*str;
 
 	str = copy_stdin();
+	init_anthill(&anthill, ft_strcount(str, '\n'));
 	set_anthill(str, &anthill);
 //	compute_anthill(av[1]);
 	ft_printf("\n%s", str);
 	free(str);
-//	free_anthill(anthill);
+//	free_anthill(&anthill);
 	return (EXIT_SUCCESS);
 }

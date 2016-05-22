@@ -18,7 +18,8 @@ FLAGS = -Wall -Werror -Wextra
 
 LIB = ft_printf\
 	  strvect\
-	  libft
+	  libft\
+	  hash_tables
 LIB_DIR = $(addsuffix /, $(addprefix ./lib/, $(LIB)))
 LIB_A = $(join $(LIB_DIR), $(addsuffix .a, $(LIB)))
 

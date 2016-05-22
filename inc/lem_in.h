@@ -14,19 +14,31 @@
 # define LEM_IN_H
 
 # include "libft.h"
-//# include "graph.h"
+# include "hash_tables.h"
+
+# include <stdint.h>
 
 # define BUF_LEN 512
-# define START 1
-# define END 2
 
+typedef struct	s_graph_node
+{
+	char		**neighbour;
+	int			pos_x;
+	int			pos_y;
+}				t_graph_node;
+
+typedef struct	s_graph
+{
+	t_hash_tbl	ht;
+	uint32_t	nb_node;
+}				t_graph;
 
 typedef struct	s_anthill
 {
-	int				nb_ant;
-//	t_graph_node	*start;
-//	t_graph_node	*end;
-//	t_graph			*graph;
+	uint32_t		nb_ant;
+	char			*start;
+	char			*end;
+	t_graph			graph;
 }				t_anthill;
 
 /*
@@ -39,12 +51,12 @@ enum	e_line
 	edge,
 	comment,
 	start_command,
-	end_command
+	end_command,
+	error
 };
 
-void	error(char *str);
 void	set_anthill(char *str, t_anthill *anthill);
-void	set_graph_node(char **str, t_anthill *anthill);
+bool	set_graph_node(char **str, t_anthill *anthill);
 
 /*
 ** parse anthill
