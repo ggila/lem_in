@@ -30,6 +30,7 @@ C_FILE = main.c\
 		 set_anthill.c\
 		 set_graph_node.c\
 		 parse/skip_line.c\
+		 graph/graph_new_node.c\
 		 debug/print_anthill.c
 
 SRC_DIR = src
@@ -60,7 +61,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR):
-	@mkdir obj obj/parse obj/debug
+	@mkdir obj obj/parse obj/debug obj/graph
 
 clean :
 	@rm -rf $(OBJ_DIR)

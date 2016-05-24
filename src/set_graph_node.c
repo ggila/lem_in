@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 21:39:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/24 15:40:09 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/24 18:06:21 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static enum e_line	type_of_line(char *str)
 		line = check_hashtag(str);
 	else if (*str == 'L')
 	{
-		ft_printf("stop reading anthill description,"
-					"cannot accept line:\n%s\n\n", str);
+		LINE_ERROR(str);
 		return (error);
 	}
 	else if (ft_strcount(str, '-') == 1)
@@ -44,8 +43,7 @@ static enum e_line	type_of_line(char *str)
 		line = node;
 	else
 	{
-		ft_printf("stop reading anthill description,"
-					"cannot accept line:\n%s\n\n", str);
+		LINE_ERROR(str);
 		return (error);
 	}
 	return (line);
@@ -68,11 +66,12 @@ bool	check_cmd(char **pos, enum e_line cmd, char *id)
 enum e_line	process_node(t_anthill *anthill, char *str, enum e_line p_line)
 {
 	t_graph_node	*new;
-	char const		*id;
+	char			*id;
 
-	split_str(str);
-	new = graph_new_node(str);
-//	graph_add_node(anthill, new);
+	id = graph_new_node(str, &new);
+	if ((id = graph_new_node(str, &new)) == NULL
+			|| graph_add_node(anthill, id, new) == false)
+		return (error);
 	if (p_line == start_command || p_line == end_command)
 	{
 		if (check_cmd(&anthill->start, p_line, id) == false)
