@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/20 21:21:25 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/24 15:07:33 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void	init_anthill(t_anthill *anthill, uint32_t size_ht)
 {
@@ -36,7 +37,10 @@ char	*copy_stdin(void)
 	while ((r = read(0, buf, BUF_LEN)) > 0)
 	{
 		if (r == -1)
+		{
+			perror("copy_stdin: ");
 			exit(EXIT_FAILURE);
+		}
 		buf[r] = '\0';
 		if (strvect_push_str(&vect, buf) == false)
 			exit(EXIT_FAILURE);

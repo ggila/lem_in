@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 21:39:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/20 22:03:15 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/24 15:40:09 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ bool	check_cmd(char **pos, enum e_line cmd, char *id)
 	return (true);
 }
 
+// free id
+
 enum e_line	process_node(t_anthill *anthill, char *str, enum e_line p_line)
 {
 	t_graph_node	*new;
-	char			*id;
+	char const		*id;
 
-	(void)str;
-	(void)new;
-	id = NULL;
-//	new = graph_new_node(str);
+	split_str(str);
+	new = graph_new_node(str);
 //	graph_add_node(anthill, new);
 	if (p_line == start_command || p_line == end_command)
 	{

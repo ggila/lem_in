@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/20 22:07:39 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/24 15:39:55 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdint.h>
 
 # define BUF_LEN 512
+# define ERR "stop reading anthill description, cannot accept line:\n%s\n\n"
+# define LINE_ERROR(str) ft_printf(ERR, str)
 
 typedef struct	s_graph_node
 {
