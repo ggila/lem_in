@@ -29,7 +29,6 @@
 
 # define GRAPH_GET_NODE(graph, id) (t_graph_node*)ht_get(&graph->ht, id)
 # define KEY_VAL(id, node) (t_kv){id, ft_strlen(id), node, sizeof(t_graph_node)}
-# define GRAPH_ADD(g, i, n) {t_kv = KEY_VAL(i, n); ht_put(g, &kv)}
 
 typedef struct	s_graph_node
 {

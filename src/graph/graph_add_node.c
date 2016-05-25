@@ -27,11 +27,13 @@ static bool	check_pos(t_graph_node *new, t_graph_node *node, char *id)
 bool		graph_add_node(t_graph *graph, char *id, t_graph_node *new)
 {
 	t_graph_node	*node;
+	t_kv			kv;
 
 	if ((node = GRAPH_GET_NODE(graph, id)) != NULL)
 		return (check_pos(node, new, id));
 	graph->nb_node += 1;
-	if (GRAPH_ADD(graph, id, node) == false)
+	kv = KEY_VAL(id, new);
+	if (ht_put(&graph->ht, &kv) == false)
 	{
 		perror("graph_add_node :");
 		exit(EXIT_FAILURE);

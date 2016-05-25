@@ -15,5 +15,11 @@
 
 void	print_anthill(t_anthill *anthill)
 {
-	ft_printf("nb_ant: %d\n", anthill->nb_ant);
+	ft_printf("atnhill:\n"
+			"nb_ant: %d\n"
+			"start: %s\n"
+			"end: %s\n"
+			"graph:\n\t", anthill->nb_ant, anthill->start, anthill->end);
+	ht_print(anthill->graph.ht);
+	ft_printf("nb_node:\n");
 }
