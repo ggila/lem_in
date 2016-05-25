@@ -68,6 +68,7 @@ clean :
 	@rm -rf $(OBJ_DIR)
 
 fclean : clean
+	@for l in $(LIB_DIR); do make -C $$l fclean; done
 	@rm -rf $(NAME)
 
 re : fclean all
