@@ -6,12 +6,13 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 21:39:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/24 18:06:21 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/25 11:39:34 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "ft_printf.h"
+#include "strvect.h"
 
 static enum e_line	check_hashtag(char *str)
 {
@@ -34,7 +35,7 @@ static enum e_line	type_of_line(char *str)
 		line = check_hashtag(str);
 	else if (*str == 'L')
 	{
-		LINE_ERROR(str);
+		PRINT_ERROR(BEGINNING, str);
 		return (error);
 	}
 	else if (ft_strcount(str, '-') == 1)
@@ -43,7 +44,7 @@ static enum e_line	type_of_line(char *str)
 		line = node;
 	else
 	{
-		LINE_ERROR(str);
+		PRINT_ERROR(FORMAT, str);
 		return (error);
 	}
 	return (line);
@@ -51,10 +52,17 @@ static enum e_line	type_of_line(char *str)
 
 bool	check_cmd(char **pos, enum e_line cmd, char *id)
 {
-	if (*pos)
+	t_strvect	vect;
+
+	if (*pos && !ft_strequ(*pos, id))
 	{
-		ft_printf("stop reading anthill description: too many %s cmd",
-					cmd == start_command ? "start" : "end");
+		strvect_init(&vect);
+		if (strvect_push_str(&vect, *pos) == false
+				|| strvect_push_str(&vect, " and ") == false
+				|| strvect_push_str(&vect, id) == false)
+			exit(EXIT_FAILURE);
+		PRINT_ERROR(cmd == start_command ? START_CMD : END_CMD, vect.str);
+		free(vect.str);
 		return (false);
 	}
 	*pos = id;
@@ -70,7 +78,7 @@ enum e_line	process_node(t_anthill *anthill, char *str, enum e_line p_line)
 
 	id = graph_new_node(str, &new);
 	if ((id = graph_new_node(str, &new)) == NULL
-			|| graph_add_node(anthill, id, new) == false)
+			|| graph_add_node(&(anthill->graph), id, new) == false)
 		return (error);
 	if (p_line == start_command || p_line == end_command)
 	{

@@ -31,6 +31,7 @@ C_FILE = main.c\
 		 set_graph_node.c\
 		 parse/skip_line.c\
 		 graph/graph_new_node.c\
+		 graph/graph_add_node.c\
 		 debug/print_anthill.c
 
 SRC_DIR = src

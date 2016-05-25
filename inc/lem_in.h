@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/24 18:09:35 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/25 11:52:09 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@
 # include <stdint.h>
 
 # define BUF_LEN 512
-# define ERR "stop reading anthill description, cannot accept line:\n%s\n\n"
-# define LINE_ERROR(str) ft_printf(ERR, str)
+# define STOP "stop reading anthill description"
+# define FORMAT "cannot accept line"
+# define POS "this node is define twice with different position"
+# define BEGINNING "this line should not begin with \'L\'"
+# define START_CMD "too many start command"
+# define END_CMD "too many end command"
+# define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
-# define GET_GRAPH_NODE(graph, id) (t_graph_node*)ht_get(graph, id)
+# define GRAPH_GET_NODE(graph, id) (t_graph_node*)ht_get(&graph->ht, id)
+# define KEY_VAL(id, node) (t_kv){id, ft_strlen(id), node, sizeof(t_graph_node)}
+# define GRAPH_ADD(g, i, n) {t_kv = KEY_VAL(i, n); ht_put(g, &kv)}
 
 typedef struct	s_graph_node
 {
@@ -67,7 +74,7 @@ bool	set_graph_node(char **str, t_anthill *anthill);
 */
 
 char		*graph_new_node(char *str, t_graph_node **new);
-bool		graph_add_node(t_anthill anthill, char *id, t_graph_node *new);
+bool		graph_add_node(t_graph *graph, char *id, t_graph_node *new);
 
 /*
 ** parse anthill

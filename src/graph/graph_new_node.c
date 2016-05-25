@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 15:16:58 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/24 18:02:42 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/25 11:40:55 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool	check_line(char *str)
 		tmp++;
 	if (*tmp != ' ')
 	{
-		LINE_ERROR(str);
+		PRINT_ERROR(FORMAT, str);
 		return (false);
 	}
 	tmp++;
@@ -39,7 +39,7 @@ static bool	check_line(char *str)
 		tmp++;
 	if (*tmp)
 	{
-		LINE_ERROR(str);
+		PRINT_ERROR(FORMAT, str);
 		return (false);
 	}
 	return (true);
