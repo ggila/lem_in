@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/25 11:52:09 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/27 18:15:03 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define BEGINNING "this line should not begin with \'L\'"
 # define START_CMD "too many start command"
 # define END_CMD "too many end command"
+# define POS_FORMAT "bad format position for this node"
+# define POS_MISSING "missing position for this node"
 # define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
 # define GRAPH_GET_NODE(graph, id) (t_graph_node*)ht_get(&graph->ht, id)
@@ -32,7 +34,7 @@
 
 typedef struct	s_graph_node
 {
-	char		**neighbour;
+//	t_hash_tbl	neighbour;
 	int			pos_x;
 	int			pos_y;
 }				t_graph_node;
@@ -79,13 +81,18 @@ bool		graph_add_node(t_graph *graph, char *id, t_graph_node *new);
 ** parse anthill
 */
 
-char	*skip_line(char *str);
-char	*end_line(char *str);
+char		*skip_line(char *str);
+char		*end_line(char *str);
+bool		check_pos(t_graph_node *new, t_graph_node *node, char *id);
+bool		check_cmd(char **pos, enum e_line cmd, char *id);
+bool		check_node(char *str);
+enum e_line	check_hashtag(char *str);
 
 /*
 ** debug func
 */
 
 void	print_anthill(t_anthill *anthill);
+void	graph_print_node(t_graph_node *node);
 
 #endif

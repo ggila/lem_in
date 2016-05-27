@@ -30,9 +30,14 @@ C_FILE = main.c\
 		 set_anthill.c\
 		 set_graph_node.c\
 		 parse/skip_line.c\
+		 parse/check/check_pos.c\
+		 parse/check/check_cmd.c\
+		 parse/check/check_node.c\
+		 parse/check/check_hashtag.c\
 		 graph/graph_new_node.c\
 		 graph/graph_add_node.c\
-		 debug/print_anthill.c
+		 graph/graph_print_node.c\
+		 debug/print_anthill.c\
 
 SRC_DIR = src
 
