@@ -6,14 +6,14 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 17:59:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 18:53:50 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/29 22:04:19 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "ft_printf.h"
 
-enum e_line	type_of_line(char *str, t_graph *graph)
+enum e_line	type_of_line(char *str)
 {
 	enum e_line	line;
 
@@ -25,7 +25,7 @@ enum e_line	type_of_line(char *str, t_graph *graph)
 		return (error);
 	}
 	else if (ft_strcount(str, '-') == 1)
-		line = check_edge(str, graph) ? edge : error;
+		line = edge;
 	else if (ft_strcount(str, ' ') == 2)
 		line = check_node(str) ? node : error;
 	else

@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 21:04:59 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/29 22:26:08 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define POS_MISSING "missing position for this node"
 # define EDGE_MISSING "missing a node for this edge"
 # define EDGE_UNKNOWN "unknown node used in edge"
+# define EDGE_SAME "this node has a self-connection"
 # define UNEXPECTED "unexpected line in edge description"
 # define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
@@ -95,7 +96,7 @@ bool		check_cmd(char **pos, enum e_line cmd, char *id);
 bool		check_node(char *str);
 bool		check_edge(char *str, t_graph *graph);
 enum e_line	check_hashtag(char *str);
-enum e_line	type_of_line(char *str, t_graph *graph);
+enum e_line	type_of_line(char *str);
 
 /*
 ** debug func

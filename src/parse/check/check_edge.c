@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 18:10:49 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 19:03:16 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/29 22:26:59 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,35 @@ static bool	check_edge_node(t_hash_tbl *ht, char *str)
 	return (true);
 }
 
+static bool	check_edge_diff(char *n1, char *n2)
+{
+	if (ft_strequ(n1, n2))
+	{
+		PRINT_ERROR(EDGE_SAME, n1);
+		return (false);
+	}
+	return (true);
+}
+
 bool		check_edge(char *str, t_graph *graph)
 {
 	char *tmp;
 
 	tmp = str;
-	check_edge_pos(*str, '-', str);
+	if (!check_edge_pos(*str, '-', str))
+		return (false);
 	while (*tmp != '-')
 		tmp++;
-	check_edge_pos(*(tmp + 1), '\0', str);
+	if (!check_edge_pos(*(tmp + 1), '\0', str))
+		return (false);
 	*tmp = '\0';
 	if (!check_edge_node(&graph->ht, str)
-			|| !check_edge_node(&graph->ht, tmp + 1))
+			|| !check_edge_node(&graph->ht, tmp + 1)
+			|| !check_edge_diff(str, tmp + 1))
+	{
+		*tmp = '-';
 		return (false);
+	}
 	*tmp = '-';
 	return true;
 }
