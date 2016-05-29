@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/27 18:15:03 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/29 21:04:59 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "hash_tables.h"
+# include "set.h"
 
 # include <stdint.h>
 
@@ -27,6 +28,9 @@
 # define END_CMD "too many end command"
 # define POS_FORMAT "bad format position for this node"
 # define POS_MISSING "missing position for this node"
+# define EDGE_MISSING "missing a node for this edge"
+# define EDGE_UNKNOWN "unknown node used in edge"
+# define UNEXPECTED "unexpected line in edge description"
 # define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
 # define GRAPH_GET_NODE(graph, id) (t_graph_node*)ht_get(&graph->ht, id)
@@ -34,7 +38,7 @@
 
 typedef struct	s_graph_node
 {
-//	t_hash_tbl	neighbour;
+	t_set		*neighbour;
 	int			pos_x;
 	int			pos_y;
 }				t_graph_node;
@@ -67,8 +71,10 @@ enum	e_line
 	error
 };
 
+void	pexit(void);
 void	set_anthill(char *str, t_anthill *anthill);
 bool	set_graph_node(char **str, t_anthill *anthill);
+void	set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
 
 /*
 ** graph functions
@@ -76,6 +82,7 @@ bool	set_graph_node(char **str, t_anthill *anthill);
 
 char		*graph_new_node(char *str, t_graph_node **new);
 bool		graph_add_node(t_graph *graph, char *id, t_graph_node *new);
+void		graph_add_edge(t_graph *graph, char *n1, char *n2, uint32_t size);
 
 /*
 ** parse anthill
@@ -86,7 +93,9 @@ char		*end_line(char *str);
 bool		check_pos(t_graph_node *new, t_graph_node *node, char *id);
 bool		check_cmd(char **pos, enum e_line cmd, char *id);
 bool		check_node(char *str);
+bool		check_edge(char *str, t_graph *graph);
 enum e_line	check_hashtag(char *str);
+enum e_line	type_of_line(char *str, t_graph *graph);
 
 /*
 ** debug func

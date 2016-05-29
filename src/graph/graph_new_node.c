@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 15:16:58 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/27 17:30:07 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/29 19:45:59 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ char		*graph_new_node(char *str, t_graph_node **new)
 	len = ft_strlen(id);
 	str[len] = ' ';
 	set_pos(*new, str + len + 1);
+	(*new)->neighbour = NULL;
 	return (id);
 }

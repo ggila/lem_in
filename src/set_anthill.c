@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 20:39:41 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/27 17:35:52 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/29 21:30:11 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void		set_anthill(char *str, t_anthill *anthill)
 {
 	anthill->nb_ant = get_nb_ant(str);
 	str = skip_line(str);
-	set_graph_node(&str, anthill);
+	if (set_graph_node(&str, anthill))
+		set_graph_edge(&str, &anthill->graph, anthill->graph.nb_node);
 	print_anthill(anthill);
 	exit(EXIT_FAILURE);
 	ft_printf("%s", str);

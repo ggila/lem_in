@@ -18,24 +18,29 @@ FLAGS = -Wall -Werror -Wextra
 
 LIB = ft_printf\
 	  strvect\
-	  libft\
-	  hash_tables
+	  hash_tables\
+	  set\
+	  libft
 LIB_DIR = $(addsuffix /, $(addprefix ./lib/, $(LIB)))
 LIB_A = $(join $(LIB_DIR), $(addsuffix .a, $(LIB)))
 
 NAME = lem_in
 
 C_FILE = main.c\
-		 error.c\
+		 pexit.c\
 		 set_anthill.c\
 		 set_graph_node.c\
+		 set_graph_edge.c\
 		 parse/skip_line.c\
+		 parse/type_of_line.c\
 		 parse/check/check_pos.c\
 		 parse/check/check_cmd.c\
 		 parse/check/check_node.c\
+		 parse/check/check_edge.c\
 		 parse/check/check_hashtag.c\
 		 graph/graph_new_node.c\
 		 graph/graph_add_node.c\
+		 graph/graph_add_edge.c\
 		 graph/graph_print_node.c\
 		 debug/print_anthill.c\
 
@@ -67,7 +72,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR):
-	@mkdir obj obj/parse obj/debug obj/graph
+	@mkdir -p obj/parse/check obj/debug obj/graph
 
 clean :
 	@rm -rf $(OBJ_DIR)

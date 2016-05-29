@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graph_print_node.c                                 :+:      :+:    :+:   */
+/*   pexit.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/27 15:45:42 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 21:42:39 by ggilaber         ###   ########.fr       */
+/*   Created: 2016/05/29 20:28:13 by ggilaber          #+#    #+#             */
+/*   Updated: 2016/05/29 20:31:29 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
-#include "ft_printf.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-void	graph_print_node(t_graph_node *node)
+void	pexit(void)
 {
-	ft_printf("(%d, %d)\t", node->pos_x, node->pos_y);
-	set_print(node->neighbour, str_print);
+	perror("add_neighbour: ");
+	exit(EXIT_FAILURE);
 }
