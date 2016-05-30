@@ -20,6 +20,7 @@ LIB = ft_printf\
 	  strvect\
 	  hash_tables\
 	  set\
+	  queue\
 	  libft
 LIB_DIR = $(addsuffix /, $(addprefix ./lib/, $(LIB)))
 LIB_A = $(join $(LIB_DIR), $(addsuffix .a, $(LIB)))
@@ -31,6 +32,7 @@ C_FILE = main.c\
 		 set_anthill.c\
 		 set_graph_node.c\
 		 set_graph_edge.c\
+		 compute_way.c\
 		 free_anthill.c\
 		 parse/skip_line.c\
 		 parse/type_of_line.c\

@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/30 14:53:31 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 16:16:29 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,26 @@
 # include <stdint.h>
 
 # define BUF_LEN 512
+
 # define STOP "stop reading anthill description"
 # define FORMAT "cannot accept line"
 # define POS "this node is define twice with different position"
 # define BEGINNING "this line should not begin with \'L\'"
 # define START_CMD "too many start command"
+# define START_MISS "missing start node"
 # define END_CMD "too many end command"
+# define END_MISS "missing end node"
 # define POS_FORMAT "bad format position for this node"
 # define POS_MISSING "missing position for this node"
 # define EDGE_MISSING "missing a node for this edge"
 # define EDGE_UNKNOWN "unknown node used in edge"
 # define EDGE_SAME "this node has a self-connection"
 # define UNEXPECTED "unexpected line in edge description"
+
 # define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
-# define GRAPH_GET_NODE(graph, id) (t_graph_node*)ht_get(&graph->ht, id)
+# define GRAPH_GET_NODE(graph, id) ((t_graph_node*)ht_get(&(graph)->ht, id))
+# define GRAPH_GET_NEIGHBOUR(graph, id) (GRAPH_GET_NODE(graph, id)->neighbour)
 # define KEY_VAL(id, node) (t_kv){id, ft_strlen(id), node, sizeof(t_graph_node)}
 
 typedef struct	s_graph_node
@@ -50,11 +55,20 @@ typedef struct	s_graph
 	uint32_t	nb_node;
 }				t_graph;
 
+typedef struct	s_way
+{
+	t_set			node;
+	uint32_t		lenght;
+	struct s_way	*subway;
+	struct s_way	*next;
+}				t_way;
+
 typedef struct	s_anthill
 {
 	uint32_t	nb_ant;
 	char		*start;
 	char		*end;
+	t_way		*ways;
 	t_graph		graph;
 }				t_anthill;
 
@@ -76,6 +90,7 @@ void			pexit(void);
 void			set_anthill(char *str, t_anthill *anthill);
 bool			set_graph_node(char **str, t_anthill *anthill);
 void			set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
+void			compute_way(t_anthill *anthill);
 void			free_anthill(t_anthill *anthill);
 
 /*

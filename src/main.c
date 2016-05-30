@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/30 14:50:56 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 15:46:16 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		main(void)
 	str = copy_stdin();
 	init_anthill(&anthill, ft_strcount(str, '\n'));
 	set_anthill(str, &anthill);
+	compute_way(&anthill);
 	ft_printf("\n%s", str);
 	free(str);
 	free_anthill(&anthill);
