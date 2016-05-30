@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_hashtag.c                                    :+:      :+:    :+:   */
+/*   free_anthill.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/27 18:11:24 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/30 14:48:01 by ggilaber         ###   ########.fr       */
+/*   Created: 2016/05/30 14:49:54 by ggilaber          #+#    #+#             */
+/*   Updated: 2016/05/30 14:52:13 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "ft_printf.h"
 
-enum e_line	check_hashtag(char *str)
+void	free_anthill(t_anthill *anthill)
 {
-	enum e_line	line;
-
-	if (ft_strequ(str, "##start"))
-		line = start_command;
-	else if (ft_strequ(str, "##end"))
-		line = end_command;
-	else
-		line = comment;
-	return (line);
+	(void)anthill;
 }

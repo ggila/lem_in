@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 18:10:49 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 22:26:59 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 14:43:52 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static bool	check_edge_pos(char c, char unwanted, char *str)
 	if (c == unwanted)
 	{
 		PRINT_ERROR(EDGE_MISSING, str);
-		return false;
+		return (false);
 	}
-	return true;
+	return (true);
 }
 
 static bool	check_edge_node(t_hash_tbl *ht, char *str)
@@ -63,5 +63,5 @@ bool		check_edge(char *str, t_graph *graph)
 		return (false);
 	}
 	*tmp = '-';
-	return true;
+	return (true);
 }

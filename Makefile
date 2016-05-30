@@ -31,6 +31,7 @@ C_FILE = main.c\
 		 set_anthill.c\
 		 set_graph_node.c\
 		 set_graph_edge.c\
+		 free_anthill.c\
 		 parse/skip_line.c\
 		 parse/type_of_line.c\
 		 parse/check/check_pos.c\

@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 21:39:45 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 22:04:45 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 14:43:03 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool				set_graph_node(char **str, t_anthill *anthill)
 			line = process_node(anthill, *str, previous_line);
 		*end = '\n';
 		if (line == edge)
-			break;
+			break ;
 		previous_line = line;
 		*str = ++end;
 		if (line == error)

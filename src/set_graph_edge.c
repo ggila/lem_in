@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 17:55:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 22:18:35 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 14:42:46 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static enum e_line	process_line(t_graph *graph, enum e_line line,
 	if (line == edge)
 	{
 		if (!check_edge(str, graph))
-			return error;
+			return (error);
 		process_edge(graph, str, size);
 	}
 	else if (line == node || line == start_command ||
 				line == start_command)
 	{
 		PRINT_ERROR(UNEXPECTED, str);
-		return error;
+		return (error);
 	}
-	return line;
+	return (line);
 }
 
 void				set_graph_edge(char **str, t_graph *graph,
@@ -57,8 +57,8 @@ void				set_graph_edge(char **str, t_graph *graph,
 		process_line(graph, line, *str, nb_node);
 		*end = '\n';
 		if (line == error)
-			return;
+			return ;
 		*str = ++end;
 	}
-	return;
+	return ;
 }

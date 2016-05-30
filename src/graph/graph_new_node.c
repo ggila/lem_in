@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/24 15:16:58 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 19:45:59 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 14:48:44 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		*graph_new_node(char *str, t_graph_node **new)
 	int				len;
 
 	set(str);
-	if ((id = ft_strdup(str)) == NULL 
+	if ((id = ft_strdup(str)) == NULL
 			|| (*new = malloc(sizeof(t_graph_node))) == NULL)
 	{
 		perror("graph_new_node: ");

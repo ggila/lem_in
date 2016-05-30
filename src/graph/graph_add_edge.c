@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/29 19:48:33 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/29 21:43:43 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/30 14:49:11 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	add_neighbour(t_set **set, char *str, uint32_t size)
 		pexit();
 }
 
-void	graph_add_edge(t_graph *graph, char *n1, char *n2, uint32_t size)
+void		graph_add_edge(t_graph *graph, char *n1, char *n2, uint32_t size)
 {
 	t_graph_node	*node;
 
