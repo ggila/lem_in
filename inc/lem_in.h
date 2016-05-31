@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/30 16:16:29 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/31 11:31:35 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef struct	s_graph
 typedef struct	s_way
 {
 	t_set			node;
+	t_set			path;
 	uint32_t		lenght;
-	struct s_way	*subway;
+	struct s_way	*subpath;
 	struct s_way	*next;
 }				t_way;
 
@@ -71,6 +72,12 @@ typedef struct	s_anthill
 	t_way		*ways;
 	t_graph		graph;
 }				t_anthill;
+
+typedef struct	s_queue_node
+{
+	char	*id;
+	t_path	path;
+}				t_queue_node;
 
 /*
 ** this enum is used to parse stdin
@@ -90,7 +97,7 @@ void			pexit(void);
 void			set_anthill(char *str, t_anthill *anthill);
 bool			set_graph_node(char **str, t_anthill *anthill);
 void			set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
-void			compute_way(t_anthill *anthill);
+void			compute_way(t_anthill *anthill, char *start);
 void			free_anthill(t_anthill *anthill);
 
 /*

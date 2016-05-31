@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/30 15:46:16 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/05/31 10:24:49 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 void	init_anthill(t_anthill *anthill, uint32_t size_ht)
 {
+	anthill->nb_ant = 0;
 	anthill->start = NULL;
 	anthill->end = NULL;
+	anthill->ways = NULL;
 	if (ht_init(&(anthill->graph.ht), size_ht, ft_strcmp, hash_djb2) == false)
 		exit(EXIT_FAILURE);
 	anthill->graph.nb_node = 0;
@@ -61,7 +63,7 @@ int		main(void)
 	str = copy_stdin();
 	init_anthill(&anthill, ft_strcount(str, '\n'));
 	set_anthill(str, &anthill);
-	compute_way(&anthill);
+	compute_way(&anthill, anthill.start);
 	ft_printf("\n%s", str);
 	free(str);
 	free_anthill(&anthill);
