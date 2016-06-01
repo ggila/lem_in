@@ -20,7 +20,7 @@
 **  - else, we visit this node (queue does not contain already visited node)
 */
 
-static void	bfs(t_queue *upcoming, t_set *visited, t_anthill *anthill)
+static void			bfs(t_queue *upcoming, t_set *visited, t_anthill *anthill)
 {
 	t_queue_node	*node;
 
@@ -34,22 +34,33 @@ static void	bfs(t_queue *upcoming, t_set *visited, t_anthill *anthill)
 	my_dfs(anthill, upcoming, visited);
 }
 
+static t_queue_node	*init_queue_node(char *start, uint32_t nb_node,
+									t_set *visited)
+{
+	t_queue_node	*init;
+
+	if (!(init = malloc(sizeof(t_queue_node))) ||
+			!(init->way = malloc(sizeof(t_set))))
+		pexit("malloc: ");
+	set_init(init->way, nb_node / 2, ft_strcmp, hash_djb2);
+	init_way->node_id = start;
+	set_push(visited, start);
+}
 /*
 ** compute_way routine inits structure for breadth first search
 */
 
-void		compute_way(t_anthill *anthill, char *start)
+void				compute_way(t_anthill *anthill, char *start)
 {
 	t_queue			upcoming;
 	t_set			visited;
 	t_queue_node	*init;
-	t_set			*way_init;
 
 	queue_init(&upcoming);
 	if (!set_init(visited, anthill->graph.nb_node / 2,
 			ft_strcmp, hash_djb2))
 		pexit("set_init: ");
-	init = new_queue_node(start, NULL);
+	init = init_queue_node(start, anthill->graph.nb_node, &visited);
 	queue_push(&upcoming, init);
 	bfs(&upcoming, &visited, anthill);
 	set_free(visited);

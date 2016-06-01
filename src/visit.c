@@ -23,7 +23,11 @@
 **
 */
 
-static void	add_neighbour(char *id, t_set *way, t_queue *queue)
+static void	update_way()
+{
+}
+
+static void	add_id(char *id, t_set *way, t_queue *queue)
 {
 	t_set			*new_way;
 	t_queue_node	*new_q_node;
@@ -48,4 +52,3 @@ void	visit(t_queue_node *q_node, t_queue *upcoming, t_hash_tbl *visited)
 	update_way(&new_upcoming);
 	queue_push_queue(upcoming, &new_upcoming);
 }
-

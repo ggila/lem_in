@@ -19,12 +19,6 @@ t_queue_node	*new_queue_node(char *id, t_set *way)
 	if (!(new = malloc(sizeof(t_queue_node))))
 		pexit("malloc: ");
 	new->node_id = id;
-	if (!way)
-	{
-		if (!(new->way = malloc(sizeof(t_set))))
-			pexit("malloc: ");
-		set_init()
-	}
-		new->way = way;
+	new->way = way;
 	return (new);
 }
