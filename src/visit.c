@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visit.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/01 10:15:32 by ggilaber          #+#    #+#             */
+/*   Updated: 2016/06/01 12:11:35 by ggilaber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 #include "queue.h"
@@ -12,19 +23,25 @@
 **
 */
 
+void	add_neighbour()
+{
 	node_neighbour = set_getnextelem(neighbours);
 	new = new_queue_node();
+}
 
-static void	visit(t_queue_node *q_node, t_queue *upcoming, t_hash_tbl *visited)
+void	visit(t_queue_node *q_node, t_queue *upcoming, t_hash_tbl *visited)
 {
-	t_set			*neighbours;
-	t_queue			new_upcoming;
+	t_set	*neighbours;
+	t_queue	new_upcoming;
+	char	*id;
 
-	neighbours = GRAPH_GET_NEIGHBOUR(q_node->node_id);
-	while ((neighbour = set_getnextelem(node->neighbour)))
+	neighbour = GRAPH_GET_NEIGHBOUR(q_node->node_id);
+	while (id = set_getnextelem(neighbour))
 	{
 		if (!set_isin(visited, neihgbour))
-			add_neighbour(neihgbour, new_upcoming);
+			add_id(neihgbour, &new_upcoming);
 	}
-
+	update_way(&new_upcoming);
+	queue_push_queue(upcoming, &new_upcoming);
 }
+

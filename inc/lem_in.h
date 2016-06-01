@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/31 11:31:35 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/01 10:51:18 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,19 @@ enum			e_line
 	error
 };
 
-void			pexit(void);
+/*
+** set anthill
+*/
+
 void			set_anthill(char *str, t_anthill *anthill);
 bool			set_graph_node(char **str, t_anthill *anthill);
 void			set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
+
+/*
+** compute way
+*/
+
 void			compute_way(t_anthill *anthill, char *start);
-void			free_anthill(t_anthill *anthill);
 
 /*
 ** graph functions
@@ -101,7 +108,7 @@ void			graph_add_edge(t_graph *graph, char *n1, char *n2,
 								uint32_t size);
 
 /*
-** parse anthill
+** parse stdin
 */
 
 char			*skip_line(char *str);
@@ -114,10 +121,12 @@ enum e_line		check_hashtag(char *str);
 enum e_line		type_of_line(char *str);
 
 /*
-** debug func
+** misc
 */
 
 void			print_anthill(t_anthill *anthill);
 void			graph_print_node(t_graph_node *node);
+void			free_anthill(t_anthill *anthill);
+void			pexit(char *str);
 
 #endif
