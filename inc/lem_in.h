@@ -55,29 +55,20 @@ typedef struct	s_graph
 	uint32_t	nb_node;
 }				t_graph;
 
-typedef struct	s_way
+typedef struct	s_queue_node
 {
-	t_set			node;
-	t_set			path;
-	uint32_t		lenght;
-	struct s_way	*subpath;
-	struct s_way	*next;
-}				t_way;
+	char	*node_id;
+	t_set	*way;
+}				t_queue_node;
 
 typedef struct	s_anthill
 {
-	uint32_t	nb_ant;
 	char		*start;
 	char		*end;
+	uint32_t	nb_ant;
 	t_way		*ways;
 	t_graph		graph;
 }				t_anthill;
-
-typedef struct	s_queue_node
-{
-	char	*id;
-	t_path	path;
-}				t_queue_node;
 
 /*
 ** this enum is used to parse stdin

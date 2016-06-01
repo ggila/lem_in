@@ -11,54 +11,48 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "ft_printf.h"
 #include "queue.h"
 
-static void	visit(t_queue_node *node, t_queue *upcoming, t_hash_tbl *visited)
-{
-	i = 0;
-	while ((id = set_getnextelem(init)))
-	{
-		if (!set_init(&((way_init + i)->node), 2 * anthill->graph.nb_node,
-						ft_strcmp, hash_djb2))
-			pexit();
-		my_dfs(way_init + i, way_init, &visited, id);
-		i++;
-	}
-}
+/*
+** bfs routine:
+**  - we stop if queue is empty (we have visited every node) or if we have
+**    find the end node
+*/
 
-static void	my_dfs(t_anthill *anthill, t_queue *upcoming, t_hash_tbl *visited)
+static void	bfs(t_queue *upcoming, t_set *visited, t_anthill *anthill)
 {
 	t_queue_node	*node;
 
 	if ((node = queue_pop(upcoming)) == NULL)
 		return ;
-	if (ft_strequ(node->id, anthill->start) && node->path)
-		free_way(node->path);
-	else if (ft_strequ(node->id, anthill->end))
-		add_way(&anthill->ways, node->way);
-	else
+	if (ft_strequ(node->id, anthill->end))
+		add_way(anthill, node->way);
+	else if (!set_isin(visited, node->id))
 		visit(node, upcoming, visited);
 	my_dfs(anthill, upcoming, visited);
 }
 
-static void	init_visited(char *start, t_graph *graph, t_hash_tbl *visited)
-{
-	if (!ht_init(visited, anthill->graph.nb_node / 2,
-			ft_strcmp, hash_djb2))
-		pexit();
-}
+/*
+** compute_way routine:
+**  - we get all nodes neighbours of start, because one and only one ant can stand
+**    in an anthill node (other than start and end node), only those nodes can lead
+**    to acceptble way from start to end.
+**  - for each of those nodes:
+**      - a breadth first search is compute (see upper explanation)
+**      - if end node is reach, we need to check if it's an acceptable way
+**        (see explanation) 
+*/
 
 void	compute_way(t_anthill *anthill, char *start)
 {
-	t_hash_tbl	visited;
 	t_queue		upcoming;
-	t_way		*way_init;
-	t_set		*neighbour_init;
+	t_set		visited;
 
-	neighbour_init = GRAPH_GET_NEIGHBOUR(start);
-	init_upcoming(&upcoming, neighbour_init);
-	init_
-	init_visited(anthill->start, &anthill->graph, &visited);
-	my_dfs(NULL, &upcoming, &visited, id);
+	queue_init(&upcoming);
+	if (!set_init(visited, anthill->graph.nb_node / 2,
+			ft_strcmp, hash_djb2))
+		pexit();
+	queue_push(&upcoming, new_queue_node(start, NULL));
+	bfs(&upcoming, &visited, anthill);
+	free_datastruct(&visited);
 }

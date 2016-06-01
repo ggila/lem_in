@@ -16,9 +16,8 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 
-void	init_anthill(t_anthill *anthill, uint32_t size_ht)
+static void	init_anthill(t_anthill *anthill, uint32_t size_ht)
 {
 	anthill->nb_ant = 0;
 	anthill->start = NULL;
@@ -29,7 +28,7 @@ void	init_anthill(t_anthill *anthill, uint32_t size_ht)
 	anthill->graph.nb_node = 0;
 }
 
-char	*copy_stdin(void)
+static char	*copy_stdin(void)
 {
 	t_strvect	vect;
 	char		buf[BUF_LEN + 1];
@@ -39,21 +38,24 @@ char	*copy_stdin(void)
 	while ((r = read(0, buf, BUF_LEN)) > 0)
 	{
 		if (r == -1)
-		{
-			perror("copy_stdin: ");
-			exit(EXIT_FAILURE);
-		}
+			pexit("read: ");
 		buf[r] = '\0';
 		if (strvect_push_str(&vect, buf) == false)
-			exit(EXIT_FAILURE);
+			pexit("strvect_push_str: ");
 	}
-	if (vect.str[vect.size - 1] != '\n')
-	{
-		ft_printf("\'\\n\' please\n");
-		exit(EXIT_FAILURE);
-	}
+	if (vect.str[vect.size - 1] != '\n' && strvect_push_char(&vect, '\n'))
+		pexit("strvect_push_char: ");
 	return (vect.str);
 }
+
+/*
+** main routine:
+**  - copy_stdin(): copy input, the project subject (lem_in.pdf) require it to
+**    be printed back before exit on success
+**  - set_anthill(): parse input into t_anthill
+**  - compute_way(): check graph and find ways from start node to end node
+**  - deplace_ants(): print ants deplacement
+*/
 
 int		main(void)
 {
@@ -61,7 +63,7 @@ int		main(void)
 	char		*str;
 
 	str = copy_stdin();
-	init_anthill(&anthill, ft_strcount(str, '\n'));
+	init_anthill(&anthill, ft_strcount(str, '\n') / 4);
 	set_anthill(str, &anthill);
 	compute_way(&anthill, anthill.start);
 	ft_printf("\n%s", str);
