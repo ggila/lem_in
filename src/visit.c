@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:15:32 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/01 12:11:35 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/01 17:36:37 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@
 **
 */
 
-void	add_neighbour()
+static void	add_neighbour(char *id, t_set *way, t_queue *queue)
 {
-	node_neighbour = set_getnextelem(neighbours);
-	new = new_queue_node();
+	t_set			*new_way;
+	t_queue_node	*new_q_node;
+
+	new_way = queue->tail ? way : set_copy(way)
+	new_q_node = new_queue_node(id, new_way);
+	queue_push(&queue, new_q_node);
 }
 
 void	visit(t_queue_node *q_node, t_queue *upcoming, t_hash_tbl *visited)
@@ -39,7 +43,7 @@ void	visit(t_queue_node *q_node, t_queue *upcoming, t_hash_tbl *visited)
 	while (id = set_getnextelem(neighbour))
 	{
 		if (!set_isin(visited, neihgbour))
-			add_id(neihgbour, &new_upcoming);
+			add_id(id, q_node->way, &new_upcoming);
 	}
 	update_way(&new_upcoming);
 	queue_push_queue(upcoming, &new_upcoming);
