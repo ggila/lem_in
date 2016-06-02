@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/02 16:31:08 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/02 20:23:41 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ static char	*copy_stdin(void)
 		if (strvect_push_str(&vect, buf) == false)
 			pexit("strvect_push_str: ");
 	}
+	if (vect.size == 0)
+	{
+		ft_printf("%s\n", NO_INPUT);
+		exit(EXIT_SUCCESS);
+	}
 	if (vect.str[vect.size - 1] != '\n' && strvect_push_char(&vect, '\n'))
 		pexit("strvect_push_char: ");
 	return (vect.str);
@@ -66,7 +71,7 @@ int		main(void)
 	init_anthill(&anthill, ft_strcount(str, '\n') / 4);
 	set_anthill(str, &anthill);
 	compute_way(&anthill, anthill.start);
-	ft_printf("\n%s", str);
+	ft_printf("\ninput:\n%s", str);
 	free(str);
 	free_anthill(&anthill);
 	return (EXIT_SUCCESS);

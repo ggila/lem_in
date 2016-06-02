@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 15:46:33 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/02 16:44:11 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/02 20:58:32 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void			bfs(t_queue *upcoming, t_set *visited, t_anthill *anthill)
 
 	if ((node = queue_pop(upcoming)) == NULL)
 		return ;
+//	ft_printf("%s\n", node->node_id);
 	if (ft_strequ(node->node_id, anthill->end))
 		set_print(node->way, str_print);
 //		add_way(anthill, node->way);

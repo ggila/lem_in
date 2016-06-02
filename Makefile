@@ -45,6 +45,7 @@ C_FILE = main.c\
 		 graph/graph_add_edge.c\
 		 graph/graph_print_node.c\
 		 misc/pexit.c\
+		 misc/print_qval.c\
 		 misc/free_anthill.c\
 		 misc/print_anthill.c\
 		 misc/new_queue_node.c

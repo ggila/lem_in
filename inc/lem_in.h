@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/02 16:44:30 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/02 20:39:48 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define BUF_LEN 512
 
+# define NO_INPUT "empty input"
 # define STOP "stop reading anthill description"
 # define FORMAT "cannot accept line"
 # define POS "this node is define twice with different position"
@@ -131,10 +132,11 @@ enum e_line		type_of_line(char *str);
 ** misc
 */
 
+void			pexit(char *str);
 void			print_anthill(t_anthill *anthill);
 void			graph_print_node(t_graph_node *node);
 void			free_anthill(t_anthill *anthill);
 t_qval			*new_queue_node(char *id, t_set *way);
-void			pexit(char *str);
+void			print_qva(t_qval *node);
 
 #endif
