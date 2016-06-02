@@ -6,49 +6,51 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:15:32 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/01 17:36:37 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/02 16:44:50 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "queue.h"
 
-/*
-**
-**    typedef struct   s_queue_node
-**    {
-**        char    *node_id;
-**        t_set   *way;
-**    }                t_queue_node;
-**
-*/
-
-static void	update_way()
+static void	update_way(t_qval *node)
 {
+	set_put(node->way, node->node_id);
 }
 
 static void	add_id(char *id, t_set *way, t_queue *queue)
 {
-	t_set			*new_way;
-	t_queue_node	*new_q_node;
+	t_set	*new_way;
+	t_qval	*new_q_node;
 
-	new_way = queue->tail ? way : set_copy(way)
+	new_way = queue->tail ? way : set_copy(way);
 	new_q_node = new_queue_node(id, new_way);
-	queue_push(&queue, new_q_node);
+	queue_push(queue, new_q_node);
 }
 
-void	visit(t_queue_node *q_node, t_queue *upcoming, t_hash_tbl *visited)
+void	visit(t_qval *q_node, t_queue *upcoming,
+					t_set *visited, t_graph *graph)
 {
 	t_set	*neighbours;
 	t_queue	new_upcoming;
 	char	*id;
+	bool	flag;
 
-	neighbour = GRAPH_GET_NEIGHBOUR(q_node->node_id);
-	while (id = set_getnextelem(neighbour))
+	flag = false;
+	neighbours = GRAPH_GET_NEIGHBOUR(graph, q_node->node_id);
+	while ((id = set_getnextelem(neighbours)))
 	{
-		if (!set_isin(visited, neihgbour))
+		if (!set_isin(visited, id))
+		{
 			add_id(id, q_node->way, &new_upcoming);
+			flag = true;
+		}
 	}
-	update_way(&new_upcoming);
-	queue_push_queue(upcoming, &new_upcoming);
+	if (flag)
+	{
+		queue_map(&new_upcoming, update_way);
+		queue_push_queue(upcoming, &new_upcoming);
+	}
+	else
+		set_free(q_node->way);
 }

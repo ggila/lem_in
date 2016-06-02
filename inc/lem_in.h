@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/01 10:51:18 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/02 16:44:30 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "hash_tables.h"
 # include "set.h"
+# include "queue.h"
 
 # include <stdint.h>
 
@@ -55,18 +56,22 @@ typedef struct	s_graph
 	uint32_t	nb_node;
 }				t_graph;
 
-typedef struct	s_queue_node
+/*
+** s_qval is used in bfs queue to keep trace of the way that lead us to node_id
+*/
+
+typedef struct	s_qval
 {
 	char	*node_id;
 	t_set	*way;
-}				t_queue_node;
+}				t_qval;
 
 typedef struct	s_anthill
 {
 	char		*start;
 	char		*end;
 	uint32_t	nb_ant;
-	t_way		*ways;
+//	t_way		*ways;
 	t_graph		graph;
 }				t_anthill;
 
@@ -97,6 +102,8 @@ void			set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
 */
 
 void			compute_way(t_anthill *anthill, char *start);
+void	visit(t_qval *q_node, t_queue *upcoming,
+					t_set *visited, t_graph *graph);
 
 /*
 ** graph functions
@@ -127,6 +134,7 @@ enum e_line		type_of_line(char *str);
 void			print_anthill(t_anthill *anthill);
 void			graph_print_node(t_graph_node *node);
 void			free_anthill(t_anthill *anthill);
+t_qval			*new_queue_node(char *id, t_set *way);
 void			pexit(char *str);
 
 #endif

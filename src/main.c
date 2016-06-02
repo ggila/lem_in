@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/31 10:24:49 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/02 16:31:08 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_anthill(t_anthill *anthill, uint32_t size_ht)
 	anthill->nb_ant = 0;
 	anthill->start = NULL;
 	anthill->end = NULL;
-	anthill->ways = NULL;
+//	anthill->ways = NULL;
 	if (ht_init(&(anthill->graph.ht), size_ht, ft_strcmp, hash_djb2) == false)
 		exit(EXIT_FAILURE);
 	anthill->graph.nb_node = 0;

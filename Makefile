@@ -28,24 +28,26 @@ LIB_A = $(join $(LIB_DIR), $(addsuffix .a, $(LIB)))
 NAME = lem_in
 
 C_FILE = main.c\
-		 pexit.c\
-		 set_anthill.c\
-		 set_graph_node.c\
-		 set_graph_edge.c\
-		 compute_way.c\
-		 free_anthill.c\
-		 parse/skip_line.c\
-		 parse/type_of_line.c\
-		 parse/check/check_pos.c\
-		 parse/check/check_cmd.c\
-		 parse/check/check_node.c\
-		 parse/check/check_edge.c\
-		 parse/check/check_hashtag.c\
+		 set_anthill/set_anthill.c\
+		 set_anthill/set_graph_node.c\
+		 set_anthill/set_graph_edge.c\
+		 compute/compute_way.c\
+		 compute/visit.c\
+		 set_anthill/parse/skip_line.c\
+		 set_anthill/parse/type_of_line.c\
+		 set_anthill/parse/check/check_pos.c\
+		 set_anthill/parse/check/check_cmd.c\
+		 set_anthill/parse/check/check_node.c\
+		 set_anthill/parse/check/check_edge.c\
+		 set_anthill/parse/check/check_hashtag.c\
 		 graph/graph_new_node.c\
 		 graph/graph_add_node.c\
 		 graph/graph_add_edge.c\
 		 graph/graph_print_node.c\
-		 debug/print_anthill.c\
+		 misc/pexit.c\
+		 misc/free_anthill.c\
+		 misc/print_anthill.c\
+		 misc/new_queue_node.c
 
 SRC_DIR = src
 
@@ -75,7 +77,10 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 $(OBJ_DIR):
-	@mkdir -p obj/parse/check obj/debug obj/graph
+	@mkdir -p obj/set_anthill/parse/check\
+				obj/misc\
+				obj/graph\
+				obj/compute
 
 clean :
 	@rm -rf $(OBJ_DIR)
