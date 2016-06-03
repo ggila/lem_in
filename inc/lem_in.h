@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/03 11:10:46 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/03 15:44:56 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stdint.h>
 
 # define BUF_LEN 512
+# define START_PATTERN_VISU "##start "
+# define END_PATTERN_VISU "##end "
 
 # define NO_INPUT "empty input"
 # define STOP "stop reading anthill description"
@@ -37,8 +39,7 @@
 # define EDGE_UNKNOWN "unknown node used in edge"
 # define EDGE_SAME "this node has a self-connection"
 # define UNEXPECTED "unexpected line in edge description"
-# define
-
+# define VISU_START "with -v, visual should be followed by start and end"
 # define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
 # define GRAPH_GET_NODE(graph, id) ((t_graph_node*)ht_get(&(graph)->ht, id))
