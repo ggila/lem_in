@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 20:39:41 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/05/30 15:12:47 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/03 10:47:23 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ static int	get_nb_ant(char *str)
 	return (nb_ant);
 }
 
-void		set_anthill(char *str, t_anthill *anthill)
+void		set_anthill(char *str, t_anthill *anthill, bool visu)
 {
 	anthill->nb_ant = get_nb_ant(str);
 	str = skip_line(str);
-	if (set_graph_node(&str, anthill))
+	if (visu ? set_graph_node(&str, anthill) :
+				set_graph_node_visu(&str, anthill))
 	{
 		if (!anthill->start || !anthill->end)
 		{

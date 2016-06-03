@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:34 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/02 20:23:41 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/03 10:24:05 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,16 @@ static char	*copy_stdin(void)
 **  - deplace_ants(): print ants deplacement
 */
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_anthill	anthill;
 	char		*str;
+	bool		visu;
 
 	str = copy_stdin();
 	init_anthill(&anthill, ft_strcount(str, '\n') / 4);
-	set_anthill(str, &anthill);
+	flag_visual = (ac == 2 && ft_strequ(av[1], "-v"));
+	set_anthill(str, &anthill, visu);
 	compute_way(&anthill, anthill.start);
 	ft_printf("\ninput:\n%s", str);
 	free(str);

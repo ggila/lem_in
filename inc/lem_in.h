@@ -6,7 +6,7 @@
 /*   By: ggilaber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 11:28:30 by ggilaber          #+#    #+#             */
-/*   Updated: 2016/06/02 20:39:48 by ggilaber         ###   ########.fr       */
+/*   Updated: 2016/06/03 11:10:46 by ggilaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define EDGE_UNKNOWN "unknown node used in edge"
 # define EDGE_SAME "this node has a self-connection"
 # define UNEXPECTED "unexpected line in edge description"
+# define
 
 # define PRINT_ERROR(TYPE, str) ft_printf("%s, %s:\n%s\n\n", STOP, TYPE, str)
 
@@ -94,8 +95,9 @@ enum			e_line
 ** set anthill
 */
 
-void			set_anthill(char *str, t_anthill *anthill);
+void			set_anthill(char *str, t_anthill *anthill, bool visu);
 bool			set_graph_node(char **str, t_anthill *anthill);
+bool			set_graph_node_visu(char **str, t_anthill *anthill);
 void			set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
 
 /*
