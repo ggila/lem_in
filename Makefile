@@ -30,6 +30,7 @@ NAME = lem_in
 C_FILE = main.c\
 		 set_anthill/set_anthill.c\
 		 set_anthill/set_graph_node.c\
+		 set_anthill/set_graph_node_visual.c\
 		 set_anthill/set_graph_edge.c\
 		 compute/compute_way.c\
 		 compute/visit.c\
@@ -41,8 +42,8 @@ C_FILE = main.c\
 		 set_anthill/parse/check/check_edge.c\
 		 set_anthill/parse/check/check_hashtag.c\
 		 graph/graph_new_node.c\
-		 graph/graph_new_node.c\
-		 graph/graph_add_node_visual.c\
+		 graph/graph_new_node_visual.c\
+		 graph/graph_add_node.c\
 		 graph/graph_add_node_visual.c\
 		 graph/graph_add_edge.c\
 		 graph/graph_print_node.c\

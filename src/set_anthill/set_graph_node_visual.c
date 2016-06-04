@@ -11,35 +11,37 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "strvect.h"
 #include "ft_printf.h"
 
-static enum e_line	process_line(t_anthill *anthill, char *str, strvect *vect)
+static enum e_line	process_line(t_anthill *anthill, char *str)
 {
 	char	*end_node;
 
 	while (*str)
 	{
-		while (*str && !ft_isalphanum(*str))
+		while (*str && !ft_isalnum(*str))
 			str++;
 		end_node = str;
-		while (*end_node && ft_islphanum(*str))
+		while (*end_node && ft_isalnum(*str))
 			end_node++;
 		if (end_node == '\0')
 			return error;
 		end_node = '\0';
-		if (!graph_add_node_visu(str, anthill))
+		if (!graph_add_node_visual(&anthill->graph, str))
 			return error;
 		str = end_node;
 		*str = ' ';
 		str++;
 	}
+	return (comment);
 }
 
-bool				set_graph_node_visu(char **str, t_anthill *anthill)
+bool				set_graph_node_visual(char **str, t_anthill *anthill)
 {
 	enum e_line	line;
 	char		*end;
-	strvect		vect;
+//	strvect		vect;
 
 	line = comment;
 	while (**str)
@@ -47,7 +49,7 @@ bool				set_graph_node_visu(char **str, t_anthill *anthill)
 		end = end_line(*str);
 		*end = '\0';
 		if (**str == '#')
-			line = process_node(anthill, *str + 1);
+			line = process_line(anthill, *str + 1);
 		*end = '\n';
 		if (line == error)
 			return (false);
@@ -55,5 +57,5 @@ bool				set_graph_node_visu(char **str, t_anthill *anthill)
 			break ;
 		*str = ++end;
 	}
-	return (true)
+	return (true);
 }

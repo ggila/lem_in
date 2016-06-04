@@ -23,7 +23,7 @@ static void	init_anthill(t_anthill *anthill, uint32_t size_ht)
 	anthill->start = NULL;
 	anthill->end = NULL;
 //	anthill->ways = NULL;
-	if (ht_init(&(anthill->graph.ht), size_ht, ft_strcmp, hash_djb2) == false)
+	if (ht_init(&(anthill->graph.ht), size_ht + 1, ft_strcmp, hash_djb2) == false)
 		exit(EXIT_FAILURE);
 	anthill->graph.nb_node = 0;
 }

@@ -98,7 +98,7 @@ end_command,
 
 void			set_anthill(char *str, t_anthill *anthill, bool visu);
 bool			set_graph_node(char **str, t_anthill *anthill);
-bool			set_graph_node_visu(char **str, t_anthill *anthill);
+bool			set_graph_node_visual(char **str, t_anthill *anthill);
 void			set_graph_edge(char **str, t_graph *graph, uint32_t nb_node);
 
 /*
@@ -116,7 +116,7 @@ void	visit(t_qval *q_node, t_queue *upcoming,
 char			*graph_new_node(char *str, t_graph_node **new);
 t_graph_node	*graph_new_node_visual(char *str);
 bool			graph_add_node(t_graph *graph, char *id, t_graph_node *new);
-bool			graph_add_node_visual(char *str, t_anthill *anthill);
+bool			graph_add_node_visual(t_graph *graph, char *id);
 void			graph_add_edge(t_graph *graph, char *n1, char *n2,
 								uint32_t size);
 

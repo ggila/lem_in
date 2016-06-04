@@ -26,12 +26,12 @@ static int	get_nb_ant(char *str)
 	return (nb_ant);
 }
 
-void		set_anthill(char *str, t_anthill *anthill, bool visu)
+void		set_anthill(char *str, t_anthill *anthill, bool visual)
 {
 	anthill->nb_ant = get_nb_ant(str);
 	str = skip_line(str);
-	if (visu ? set_graph_node(&str, anthill) :
-				set_graph_node_visu(&str, anthill))
+	if (visual ? set_graph_node(&str, anthill) :
+				set_graph_node_visual(&str, anthill))
 	{
 		if (!anthill->start || !anthill->end)
 		{

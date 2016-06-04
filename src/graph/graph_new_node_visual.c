@@ -24,7 +24,6 @@ t_graph_node	*graph_new_node_visual(char *str)
 {
 	t_graph_node	*new;
 	char			*id;
-	int				len;
 
 	if ((id = ft_strdup(str)) == NULL
 			|| (new = malloc(sizeof(t_graph_node))) == NULL)
