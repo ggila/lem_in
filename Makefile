@@ -41,7 +41,9 @@ C_FILE = main.c\
 		 set_anthill/parse/check/check_edge.c\
 		 set_anthill/parse/check/check_hashtag.c\
 		 graph/graph_new_node.c\
-		 graph/graph_add_node.c\
+		 graph/graph_new_node.c\
+		 graph/graph_add_node_visual.c\
+		 graph/graph_add_node_visual.c\
 		 graph/graph_add_edge.c\
 		 graph/graph_print_node.c\
 		 misc/pexit.c\

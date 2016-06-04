@@ -88,7 +88,7 @@ enum			e_line
 	edge,
 	comment,
 	start_command,
-	end_command,
+end_command,
 	error
 };
 
@@ -114,7 +114,9 @@ void	visit(t_qval *q_node, t_queue *upcoming,
 */
 
 char			*graph_new_node(char *str, t_graph_node **new);
+t_graph_node	*graph_new_node_visual(char *str);
 bool			graph_add_node(t_graph *graph, char *id, t_graph_node *new);
+bool			graph_add_node_visual(char *str, t_anthill *anthill);
 void			graph_add_edge(t_graph *graph, char *n1, char *n2,
 								uint32_t size);
 

@@ -13,44 +13,47 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
-static bool			get_cmd(char *str, char *pattern, char **pos)
+static enum e_line	process_line(t_anthill *anthill, char *str, strvect *vect)
 {
-	if (!ft_strncmp(*str, pattern))
+	char	*end_node;
+
+	while (*str)
 	{
-		ft_printf(VISU_START);
-		return (false);
-	}
-	while (*str != ' ')
+		while (*str && !ft_isalphanum(*str))
+			str++;
+		end_node = str;
+		while (*end_node && ft_islphanum(*str))
+			end_node++;
+		if (end_node == '\0')
+			return error;
+		end_node = '\0';
+		if (!graph_add_node_visu(str, anthill))
+			return error;
+		str = end_node;
+		*str = ' ';
 		str++;
-	if (!graph_add_node(&(anthill->graph), str, ))
-}
-
-static enum e_line	process_node(t_anthill *anthill, char *str, strvect *vect)
-{
-	strvect_push(vect, ++str);
-
+	}
 }
 
 bool				set_graph_node_visu(char **str, t_anthill *anthill)
 {
+	enum e_line	line;
 	char		*end;
 	strvect		vect;
-	enum e_line	line;
 
+	line = comment;
 	while (**str)
 	{
 		end = end_line(*str);
 		*end = '\0';
-		line = type_of_line(*str);
-		if (line == comment)
-			line = process_node(anthill, *str);
+		if (**str == '#')
+			line = process_node(anthill, *str + 1);
 		*end = '\n';
-		if (line != comment)
+		if (line == error)
+			return (false);
+		if (**str != '#')
 			break ;
 		*str = ++end;
 	}
-	if (!get_cmd(str, START_PATTERN_VISU, &anthill->start) ||
-			!get_cmd(str, END_PATTERN_VISU, &anthill->end))
-		return (false);
 	return (true)
 }

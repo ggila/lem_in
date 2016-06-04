@@ -15,45 +15,23 @@
 #include <stdio.h>
 
 /*
-** malloc space for a new node from an input string str = "id pos_x pos_y"
+** malloc space for a new node from an input string str = "id"
 ** malloc space and duplicate string "id"
-** return node id if everything is ok, else NULL
+** return node id if everything is ok, else exit
 */
 
-static void	set(char *str)
+t_graph_node	*graph_new_node_visual(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != ' ')
-		i++;
-	str[i] = '\0';
-}
-
-static void	set_pos(t_graph_node *new, char *str)
-{
-	new->pos_x = ft_atoi(str);
-	while (*str != ' ')
-		str++;
-	str++;
-	new->pos_y = ft_atoi(str);
-}
-
-char		*graph_new_node(char *str, t_graph_node **new)
-{
+	t_graph_node	*new;
 	char			*id;
 	int				len;
 
-	set(str);
 	if ((id = ft_strdup(str)) == NULL
-			|| (*new = malloc(sizeof(t_graph_node))) == NULL)
+			|| (new = malloc(sizeof(t_graph_node))) == NULL)
 	{
 		perror("graph_new_node: ");
 		exit(EXIT_FAILURE);
 	}
-	len = ft_strlen(id);
-	str[len] = ' ';
-	set_pos(*new, str + len + 1);
-	(*new)->neighbour = NULL;
-	return (id);
+	new->neighbour = NULL;
+	return (new);
 }

@@ -66,12 +66,12 @@ int		main(int ac, char **av)
 {
 	t_anthill	anthill;
 	char		*str;
-	bool		visu;
+	bool		flag_visual;
 
 	str = copy_stdin();
 	init_anthill(&anthill, ft_strcount(str, '\n') / 4);
 	flag_visual = (ac == 2 && ft_strequ(av[1], "-v"));
-	set_anthill(str, &anthill, visu);
+	set_anthill(str, &anthill, flag_visual);
 	compute_way(&anthill, anthill.start);
 	ft_printf("\ninput:\n%s", str);
 	free(str);
