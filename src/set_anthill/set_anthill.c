@@ -30,8 +30,8 @@ void		set_anthill(char *str, t_anthill *anthill, bool visual)
 {
 	anthill->nb_ant = get_nb_ant(str);
 	str = skip_line(str);
-	if (visual ? set_graph_node(&str, anthill) :
-				set_graph_node_visual(&str, anthill))
+	if (visual ? set_graph_node_visual(&str, anthill) :
+				set_graph_node(&str, anthill))
 	{
 		if (!anthill->start || !anthill->end)
 		{

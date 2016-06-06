@@ -13,6 +13,8 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
+# include <ncurses.h>
+
 # include "libft.h"
 # include "hash_tables.h"
 # include "set.h"
@@ -46,9 +48,16 @@
 # define GRAPH_GET_NEIGHBOUR(graph, id) (GRAPH_GET_NODE(graph, id)->neighbour)
 # define KEY_VAL(id, node) (t_kv){id, ft_strlen(id), node, sizeof(t_graph_node)}
 
+typedef struct	s_color
+{
+	char	fore;
+	char	back;
+}				t_color;
+
 typedef struct	s_graph_node
 {
 	t_set		*neighbour;
+	t_color		color;
 	int			pos_x;
 	int			pos_y;
 }				t_graph_node;

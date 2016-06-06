@@ -42,13 +42,13 @@ void	visit(t_qval *q_node, t_queue *upcoming,
 	set_it_init(&it);
 	neighbours = GRAPH_GET_NEIGHBOUR(graph, q_node->node_id);
 //	set_print(neighbours, str_print);
-	ft_printf("\nvisit: %s\t", q_node->node_id);
+//	ft_printf("\nvisit: %s\t", q_node->node_id);
 	while ((id = set_getnextelem(neighbours, &it)))
 	{
 //		ft_printf("\n%s\t", id);
 		if (!set_isin(visited, id))
 		{
-			ft_printf("%s ", id);
+//			ft_printf("%s ", id);
 			if (!ft_strequ(id, "g"))
 			set_put(visited, id);
 			add_id(id, q_node->way, &new_upcoming);
